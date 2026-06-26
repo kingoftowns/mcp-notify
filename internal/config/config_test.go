@@ -17,8 +17,8 @@ func TestConfig_Load_Success(t *testing.T) {
 	if err != nil {
 		t.Fatalf("expected no error, got: %v", err)
 	}
-	if cfg.Port != "8080" {
-		t.Errorf("expected PORT 8080, got %q", cfg.Port)
+	if cfg.Port != "8090" {
+		t.Errorf("expected PORT 8090, got %q", cfg.Port)
 	}
 	if cfg.GmailUsername != "test@example.com" {
 		t.Errorf("expected test@example.com, got %q", cfg.GmailUsername)
@@ -56,7 +56,7 @@ func TestConfig_Load_DefaultPort(t *testing.T) {
 	if err != nil {
 		t.Fatalf("expected no error, got: %v", err)
 	}
-	if cfg.Port != "8080" {
-		t.Errorf("expected default PORT 8080, got %q", cfg.Port)
+	if cfg.Port != "8090" {
+		t.Errorf("expected default PORT 8090, got %q", cfg.Port)
 	}
 }

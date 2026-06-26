@@ -27,6 +27,9 @@ go.work.sum
 # env file
 .env
 
+# Dev Containers CLI generated lockfile
+.devcontainer/devcontainer-lock.json
+
 # Editor/IDE
 # .idea/
 # .vscode/

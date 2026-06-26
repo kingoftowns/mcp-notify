@@ -38,7 +38,7 @@
     }
   },
   "forwardPorts": [
-    8080
+    8090
   ],
   "postCreateCommand": "git config --global --add safe.directory /workspace && (test -f go.mod && go mod download || true) && go install github.com/air-verse/air@latest",
   "remoteUser": "vscode"

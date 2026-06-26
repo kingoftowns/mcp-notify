@@ -8,7 +8,7 @@ import (
 
 // Config holds all application configuration loaded from environment variables.
 type Config struct {
-	Port             string `env:"PORT"                envDefault:"8080"`
+	Port             string `env:"PORT"                envDefault:"8090"`
 	GmailUsername    string `env:"GMAIL_USERNAME,required"`
 	GmailAppPassword string `env:"GMAIL_APP_PASSWORD,required"`
 	BearerToken      string `env:"BEARER_TOKEN"`

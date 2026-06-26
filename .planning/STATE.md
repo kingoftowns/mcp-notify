@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 1 code complete — awaiting 2 human verification gates
-last_updated: "2026-06-26T04:40:00.000Z"
-last_activity: 2026-06-26 -- Phase 01 plans 01-01..01-04 executed (neo via GSD); deps hardened; awaiting human gates
+stopped_at: Phase 1 COMPLETE — all gates passed; ready for Phase 2
+last_updated: "2026-06-26T05:38:00.000Z"
+last_activity: 2026-06-26 -- Phase 01 fully verified (live send + debugger + MCP register/call on :8090)
 progress:
   total_phases: 6
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 5
-  completed_plans: 4
-  percent: 15
+  completed_plans: 5
+  percent: 17
 ---
 
 # Project State
@@ -25,20 +25,23 @@ See: .planning/PROJECT.md (updated 2026-06-25)
 
 ## Current Position
 
-Phase: 1 of 6 (MCP Tool + Real Email Delivery)
-Plan: 4 of 5 executed (code complete); 2 human gates pending
-Status: Code complete & verified (build/vet/test green, govulncheck clean) — awaiting human gates
-Last activity: 2026-06-26 -- Phase 01 executed by neo via GSD (commits 19abb5b..760c79d)
+Phase: 1 of 6 (MCP Tool + Real Email Delivery) — ✅ COMPLETE
+Plan: 5 of 5 executed and verified
+Status: Phase 1 done — all gates passed; ready to plan Phase 2
+Last activity: 2026-06-26 -- Phase 01 fully verified end-to-end on :8090
 
-Progress: [██░░░░░░░░] 12% (phase code complete; phase-done pending live deliverability + devcontainer gates)
+Progress: [██░░░░░░░░] 17% (Phase 1 of 6 complete)
 
-### Phase 1 plan status
-- 01-01 config + seams — ✅ committed `19abb5b`, tests green
-- 01-02 renderer (goldmark+bluemonday) — ✅ committed `a122434`, 5 tests green
-- 01-03 email channel (go-mail, multipart) — ✅ committed `85d109e`, unit + tag-guarded integration test
-- 01-04 MCP tool + `/mcp` server + main — ✅ code committed `838d2d0`; **Task 3 (live deliverability) PASSED 2026-06-26** — real email confirmed in inbox (msg-id `<LPJ1d4NBz9F...>`); initialize handshake echoed protocolVersion `2025-06-18`, serverInfo `mcp-notify`
-- 01-05 devcontainer "Debug mcp-notify" — ⬜ **HUMAN GATE pending** (interactive; last code gate)
-- deps hardening (x/net v0.53.0 + toolchain go1.26.4) — ✅ committed `dedc0c9`; govulncheck 0 code-affecting
+### Phase 1 plan status — ALL COMPLETE
+- 01-01 config + seams — ✅ `19abb5b`, tests green
+- 01-02 renderer (goldmark+bluemonday) — ✅ `a122434`, 5 tests green
+- 01-03 email channel (go-mail, multipart) — ✅ `85d109e`, unit + tag-guarded integration test
+- 01-04 MCP tool + `/mcp` server + main — ✅ `838d2d0`; live deliverability PASSED (email in inbox)
+- 01-05 devcontainer "Debug mcp-notify" — ✅ debugger runs + breakpoints; local MCP client registered & called the tool
+- deps hardening (x/net v0.53.0 + toolchain go1.26.4) — ✅ `dedc0c9`; govulncheck 0 code-affecting
+- local port — runs on **:8090** (neo-mcp owns :8080 on this host) — `72b8307`
+
+**Final verification (2026-06-26):** server in devcontainer debugger on :8090; registered in Claude Code (`mcp-notify ✔ Connected`); `send_notification` called over Streamable HTTP → "Email delivered … message-id `<opPIJBxZSqIW3Hj_9CWYUC@…>`" confirmed in inbox.
 
 ## Performance Metrics
 

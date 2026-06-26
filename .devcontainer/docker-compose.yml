@@ -14,9 +14,9 @@ services:
       - path: ../.env
         required: false
     environment:
-      - PORT=8080
+      - PORT=8090
     ports:
-      - "8080:8080"
+      - "8090:8090"
     networks:
       - devcontainer_network
 
