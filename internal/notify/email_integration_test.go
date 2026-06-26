@@ -25,7 +25,7 @@ func TestRealSend(t *testing.T) {
 		t.Fatalf("load config: %v", err)
 	}
 
-	ch := newEmailChannel(cfg)
+	ch := NewEmailChannel(cfg)
 
 	rendered := Rendered{
 		Subject:  "[Info] Integration test",

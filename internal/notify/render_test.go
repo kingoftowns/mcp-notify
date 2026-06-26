@@ -6,7 +6,7 @@ import (
 )
 
 func TestRender_SanitizesScript(t *testing.T) {
-	r := newRenderer()
+	r := NewRenderer()
 
 	// Use markdown-native input — goldmark suppresses raw HTML.
 	// The body has safe markdown content + an explicit <script> attempt.

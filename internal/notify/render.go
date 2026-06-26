@@ -17,6 +17,9 @@ type goldmarkRenderer struct {
 	tmpl  *template.Template
 }
 
+// NewRenderer creates a new Renderer backed by goldmark (GFM) + bluemonday (UGCPolicy).
+func NewRenderer() Renderer { return newRenderer() }
+
 func newRenderer() *goldmarkRenderer {
 	md := goldmark.New(
 		goldmark.WithExtensions(extension.GFM),

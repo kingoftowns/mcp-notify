@@ -10,13 +10,17 @@ import (
 )
 
 type emailChannel struct {
-	username string
-	password string
+	username  string
+	password  string
 	recipient string
 }
 
 // newEmailChannel creates a Channel backed by Gmail SMTP (smtp.gmail.com:587
 // with STARTTLS). The caller provides Gmail credentials and the fixed recipient.
+// NewEmailChannel creates a Channel backed by Gmail SMTP (smtp.gmail.com:587
+// with STARTTLS). The caller provides Gmail credentials and the fixed recipient.
+func NewEmailChannel(cfg *config.Config) Channel { return newEmailChannel(cfg) }
+
 func newEmailChannel(cfg *config.Config) *emailChannel {
 	return &emailChannel{
 		username:  cfg.GmailUsername,
