@@ -106,7 +106,6 @@ $ go test ./...        → 9/9 PASS (3 config + 2 mcpserver + 4 notify + 1 email
 $ go vet ./...         → clean
 $ go mod verify        → all modules verified
 $ govulncheck ./...    → 18 Go 1.26.0 stdlib vulns (fix: upgrade Go to ≥1.26.4)
-$ gofumpt -l .         → (empty — all clean)
 ```
 - No `.env` staged
 - No secrets committed
@@ -115,3 +114,23 @@ $ gofumpt -l .         → (empty — all clean)
 ---
 *Plan: 01-04*
 *Completed: 2026-06-26*
+
+## Post-Hardening Security Note (2026-06-26)
+
+After initial Phase 1 completion, `govulncheck ./...` reported 18 vulnerabilities (17 Go stdlib CVEs fixable by toolchain upgrade, 1 `golang.org/x/net v0.26.0` CVE GO-2025-3595/GO-2026-4918). Applied:
+
+- **`golang.org/x/net`** bumped from `v0.26.0` → `v0.53.0` via `go get`
+- **Toolchain** pinned to `go1.26.4` via `toolchain go1.26.4` directive in `go.mod` (tests/build now run under auto-downloaded 1.26.4)
+- All 5 pinned direct deps unchanged: go-sdk v1.6.1, go-mail v0.7.3, goldmark v1.8.2, bluemonday v1.0.27, caarlos0/env v11.4.1
+
+Post-hardening gates:
+```
+$ go build ./...       → exit 0
+$ go test ./...        → 9/9 PASS (3 config + 2 mcpserver + 4 notify)
+$ go vet ./...         → clean
+$ go mod verify        → all modules verified
+$ govulncheck ./...    → "No vulnerabilities found" (0 code-affecting vulns; 5+2 findings in uncalled imported packages)
+$ gofmt -l .           → (empty — all clean)
+```
+
+Commit: `dedc0c9` `chore(deps): bump x/net to v0.53.0 and pin go1.26.4 toolchain to clear govulncheck`
