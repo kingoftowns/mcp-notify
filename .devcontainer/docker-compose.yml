@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/workspace:cached
+    command: sleep infinity
+    env_file:
+      # Local secrets/config — gitignored. Copy .env.example to .env to populate.
+      # required:false so the devcontainer still comes up before .env exists.
+      - path: ../.env
+        required: false
+    environment:
+      - PORT=8080
+    ports:
+      - "8080:8080"
+    networks:
+      - devcontainer_network
+
+networks:
+  devcontainer_network:
+    driver: bridge

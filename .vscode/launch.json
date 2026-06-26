@@ -1,0 +1,44 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch mcp-notify",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/server",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PORT": "${env:PORT}",
+                "GMAIL_USERNAME": "${env:GMAIL_USERNAME}",
+                "GMAIL_APP_PASSWORD": "${env:GMAIL_APP_PASSWORD}",
+                "BEARER_TOKEN": "${env:BEARER_TOKEN}",
+                "NOTIFY_RECIPIENT": "${env:NOTIFY_RECIPIENT}"
+            },
+            "args": [],
+            "showLog": true
+        },
+        {
+            "name": "Debug mcp-notify",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/cmd/server",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PORT": "${env:PORT}",
+                "GMAIL_USERNAME": "${env:GMAIL_USERNAME}",
+                "GMAIL_APP_PASSWORD": "${env:GMAIL_APP_PASSWORD}",
+                "BEARER_TOKEN": "${env:BEARER_TOKEN}",
+                "NOTIFY_RECIPIENT": "${env:NOTIFY_RECIPIENT}"
+            },
+            "args": [],
+            "showLog": true,
+            "stopOnEntry": false,
+            "console": "internalConsole",
+            "dlvFlags": [
+                "--check-go-version=false"
+            ]
+        }
+    ]
+}
